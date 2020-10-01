@@ -33,6 +33,14 @@ if len(sys.argv) < 3 or len(sys.argv) > 3:
 dataTrain = readData(1)
 dataTest = readData(2)
 
+p0train = float()
+p0train = len(dataTrain['0']) / (len(dataTrain['0']) + len(dataTrain['1']))
+p1train = float() 
+p1train = len(dataTrain['1']) / (len(dataTrain['0']) + len(dataTrain['1']))
+
+
+print(p0train)
+print(p1train)
 # printData(dataTrain)
 # printData(dataTest)
 
