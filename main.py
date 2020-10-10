@@ -87,7 +87,7 @@ def predictClasses(pAttributes, dataTest, p0train, p1train):
             p1 = 1
     return predictions
 
-def getAccuracy(predictions, total0Test, totalTest):
+def getAccuracy(predictions, total0Test, totalTest, num):
     countCorrect = 0
     for i in range(total0Test):
         if predictions[i] == '0':
@@ -95,8 +95,11 @@ def getAccuracy(predictions, total0Test, totalTest):
     for i in range(total0Test, totalTest):
         if predictions[i] == '1':
             countCorrect += 1
-    print("Accuracy on test set (", totalTest, " instances): ", round(((countCorrect / totalTest) * 100), 2), "%", sep='')
-    return 0
+    if num == 0:
+        print("Accuracy on training set (", totalTest, " instances): ", round(((countCorrect / totalTest) * 100), 2), "%", sep='')
+    else:
+        print("Accuracy on test set (", totalTest, " instances): ", round(((countCorrect / totalTest) * 100), 2), "%", sep='')
+
 
 
 # ensure there are exactly 2 file arguments in execution
@@ -125,8 +128,8 @@ printProbabilities(pAttributes, p0train, p1train)
 trainPredictions = predictClasses(pAttributes, dataTrain, p0train, p1train)
 testPredictions = predictClasses(pAttributes, dataTest, p0train, p1train)
 
-getAccuracy(trainPredictions, total0Train, totalTrain)
-getAccuracy(testPredictions, total0Test, totalTest)
+getAccuracy(trainPredictions, total0Train, totalTrain, 0)
+getAccuracy(testPredictions, total0Test, totalTest, 1)
 # print(dataTrain['0'])
 # printData(dataTrain)
 # printData(dataTest)
